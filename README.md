@@ -23,3 +23,5 @@ npm run build
 
 Deploys automatically to GitHub Pages on push to `main` via
 `.github/workflows/deploy.yml`.
+
+**Last updated:** 2026-07-30
