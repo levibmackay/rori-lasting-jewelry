@@ -58,7 +58,7 @@ export default function ChainSpine({ containerRef }) {
 
   return (
     <div
-      className="pointer-events-none absolute inset-y-0 left-4 z-0 w-5 sm:left-8 md:left-12"
+      className="pointer-events-none absolute inset-y-0 left-4 z-20 w-5 sm:left-8 md:left-12"
       aria-hidden="true"
     >
       {/* static base track, always fully visible */}
