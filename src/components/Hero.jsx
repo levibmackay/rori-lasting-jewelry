@@ -64,7 +64,11 @@ function WeldSpecimen() {
 
 export default function Hero() {
   return (
-    <section className="relative overflow-hidden px-6 pb-20 pt-14 sm:px-12 md:pb-24 md:pt-16 lg:px-24">
+    <section
+      id="top"
+      tabIndex={-1}
+      className="relative overflow-hidden px-6 pb-20 pt-8 focus:outline-none sm:px-12 sm:pt-10 md:pb-24 md:pt-14 lg:px-24"
+    >
       <div className="relative z-10 mx-auto grid max-w-6xl grid-cols-1 items-center gap-14 pl-6 sm:pl-10 md:pl-16 lg:grid-cols-12 lg:gap-16">
         <div className="lg:col-span-7">
           <motion.img
@@ -86,7 +90,7 @@ export default function Hero() {
           </motion.p>
 
           <motion.h1
-            className="font-serif text-[15vw] font-medium leading-[0.95] tracking-tight text-ink sm:text-6xl md:text-7xl lg:text-[5.5rem]"
+            className="font-serif text-[clamp(2.25rem,11vw,3.75rem)] font-medium leading-[0.95] tracking-tight text-ink sm:text-6xl md:text-7xl lg:text-[5.5rem]"
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, ease: 'easeOut', delay: 0.2 }}

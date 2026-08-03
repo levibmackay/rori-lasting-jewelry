@@ -1,14 +1,20 @@
+import { forwardRef } from 'react'
 import { motion } from 'framer-motion'
-import logo from '../assets/rori-logo.png'
 
-export default function Book() {
-  const year = new Date().getFullYear()
-
+const Book = forwardRef(function Book(_props, ref) {
   return (
-    <section className="relative bg-paper-alt px-6 pb-14 pt-24 sm:px-12 md:pb-16 md:pt-32 lg:px-24">
+    <section
+      id="book"
+      ref={ref}
+      tabIndex={-1}
+      className="scroll-mt-24 border-t border-pewter-line/50 bg-paper-alt px-6 py-28 focus:outline-none sm:px-12 md:py-36 lg:px-24"
+    >
       <div className="mx-auto max-w-3xl pl-6 text-left sm:pl-10 md:pl-16">
+        {/* text-ink, not text-coral-deep: on this section's paper-alt
+            background, coral-deep only clears ~4.3:1 against paper-alt,
+            under the 4.5:1 AA floor for this text's size. */}
         <motion.p
-          className="eyebrow mb-4 text-coral-deep"
+          className="eyebrow mb-4 text-ink"
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.5 }}
@@ -42,46 +48,18 @@ export default function Book() {
           href="https://rori-lasting-jewelry.square.site/"
           target="_blank"
           rel="noopener noreferrer"
-          className="mt-10 inline-flex items-center gap-3 rounded-full bg-coral px-9 py-4 text-base font-medium text-paper transition-colors hover:bg-coral-deep"
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          className="mt-10 inline-flex items-center gap-3 rounded-full bg-coral-deep px-9 py-4 text-base font-medium text-paper transition-colors hover:bg-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-coral-deep"
+          initial={{ opacity: 0, y: 16, scale: 0.96 }}
+          whileInView={{ opacity: 1, y: 0, scale: 1 }}
           viewport={{ once: true, amount: 0.5 }}
-          transition={{ duration: 0.8, ease: 'easeOut', delay: 0.3 }}
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: 0.3 }}
         >
           Book now
           <span aria-hidden="true">&rarr;</span>
         </motion.a>
       </div>
-
-      <footer className="mx-auto mt-28 max-w-3xl border-t border-pewter-line pl-6 pt-10 text-left sm:pl-10 md:pl-16">
-        <div className="flex flex-wrap items-center gap-6">
-          <img
-            src={logo}
-            alt="Rori Lasting Jewelry"
-            className="h-10 w-10 rounded-full object-cover"
-          />
-          <div className="flex flex-col gap-1 text-sm text-ink-soft sm:flex-row sm:items-center sm:gap-6">
-            <a
-              href="https://www.instagram.com/rori.lasting.jewelry"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="transition-colors hover:text-coral-deep"
-            >
-              @rori.lasting.jewelry
-            </a>
-            <a
-              href="mailto:rori.lasting.jewelry@gmail.com"
-              className="transition-colors hover:text-coral-deep"
-            >
-              rori.lasting.jewelry@gmail.com
-            </a>
-            <span>1183 Summers Dr, Suite 8, Rexburg, ID 83440</span>
-          </div>
-        </div>
-        <p className="mt-8 pb-2 text-xs text-ink-soft">
-          &copy; {year} Rori Permanent Jewelry
-        </p>
-      </footer>
     </section>
   )
-}
+})
+
+export default Book

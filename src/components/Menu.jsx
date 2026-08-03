@@ -1,3 +1,4 @@
+import { forwardRef } from 'react'
 import { motion } from 'framer-motion'
 
 const services = [
@@ -16,12 +17,20 @@ const services = [
   },
 ]
 
-export default function Menu() {
+const Menu = forwardRef(function Menu(_props, ref) {
   return (
-    <section className="bg-paper-alt px-6 py-24 sm:px-12 md:py-32 lg:px-24">
+    <section
+      id="menu"
+      ref={ref}
+      tabIndex={-1}
+      className="scroll-mt-24 border-t border-pewter-line/50 bg-paper-alt px-6 py-28 focus:outline-none sm:px-12 md:py-36 lg:px-24"
+    >
       <div className="mx-auto max-w-3xl pl-6 sm:pl-10 md:pl-16">
+        {/* text-ink, not text-coral-deep: on this section's paper-alt
+            background, coral-deep only clears ~4.3:1 against paper-alt,
+            under the 4.5:1 AA floor for this text's size. */}
         <motion.p
-          className="eyebrow mb-4 text-coral-deep"
+          className="eyebrow mb-4 text-ink"
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.5 }}
@@ -45,10 +54,14 @@ export default function Menu() {
             <motion.div
               key={service.name}
               className="grid gap-2 py-9 sm:grid-cols-[1fr_auto] sm:items-baseline sm:gap-8"
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, x: i % 2 === 0 ? -18 : 18 }}
+              whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, amount: 0.4 }}
-              transition={{ duration: 0.8, ease: 'easeOut', delay: i * 0.1 }}
+              transition={{
+                duration: 0.7,
+                ease: [0.16, 1, 0.3, 1],
+                delay: i * 0.12,
+              }}
             >
               <div>
                 <h3 className="font-serif text-2xl font-medium text-ink sm:text-3xl">
@@ -69,4 +82,6 @@ export default function Menu() {
       </div>
     </section>
   )
-}
+})
+
+export default Menu
